@@ -89,9 +89,9 @@ namespace SyncTest
             (sender as Button).Enabled = false;
             var textBoxResults = textBox1;
 
-            Stopwatch sw = new Stopwatch();//引用stopwatch物件
-            sw.Reset();//碼表歸零
-            sw.Start();//碼表開始計時
+            Stopwatch sw = new Stopwatch();
+            sw.Reset();
+            sw.Start();
             /**************/
             //await Sleep(1);
             //await Sleep(1);
@@ -105,7 +105,7 @@ namespace SyncTest
             await s2;
             await s3;
             /**************/
-            sw.Stop();//碼錶停止
+            sw.Stop();
             string result = sw.Elapsed.TotalMilliseconds.ToString();
             textBoxResults.Text = result;
 
@@ -114,10 +114,14 @@ namespace SyncTest
 
         async Task Sleep(int sec)
         {
-            await Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(sec * 1000);
-            });
+            //會另開thread
+            //await Task.Factory.StartNew(() =>
+            //{
+            //    Thread.Sleep(sec * 1000);
+            //});
+
+            //沒有另開thread
+            await Task.Delay(sec * 1000);
         }
 
 
